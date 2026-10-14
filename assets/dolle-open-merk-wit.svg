@@ -1,0 +1,8 @@
+<svg viewBox="0 0 620 100" xmlns="http://www.w3.org/2000/svg">
+<g transform="scale(1.282)"><path d="M10 6 V46 H42" stroke="#FFFFFF" stroke-width="13" fill="none"></path><path d="M90 72 V32 H58" stroke="#FFFFFF" stroke-width="13" fill="none"></path></g>
+<g transform="translate(180,13) scale(0.74)"><path fill="#FFFFFF" fill-rule="evenodd" d="M0 0 H62 Q100 0 100 38 V62 Q100 100 62 100 H0 Z M20 20 H60 Q80 20 80 40 V60 Q80 80 60 80 H20 Z"></path>
+<path fill="#FFFFFF" fill-rule="evenodd" transform="translate(125,0)" d="M36 0 H64 Q100 0 100 36 V64 Q100 100 64 100 H36 Q0 100 0 64 V36 Q0 0 36 0 Z M38 20 H62 Q80 20 80 38 V62 Q80 80 62 80 H38 Q20 80 20 62 V38 Q20 20 38 20 Z"></path>
+<path fill="#FFFFFF" transform="translate(254,0)" d="M0 0 H20 V80 H100 V100 H0 Z"></path>
+<path fill="#FFFFFF" transform="translate(373,0)" d="M0 0 H20 V80 H100 V100 H0 Z"></path>
+<path fill="#FFFFFF" transform="translate(494,0)" d="M0 0 H100 V20 H20 V40 H80 V60 H20 V80 H100 V100 H0 Z"></path></g>
+</svg>
