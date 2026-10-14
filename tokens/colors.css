@@ -1,0 +1,80 @@
+:root{
+  /* Base palette — vier kleuren dragen alles. Wit is de paginabasis, gebroken wit
+     de tweede achtergrond, donkerblauw draagt het contrast, kobalt geeft de richting. */
+  --dolle-navy:#101F3C;
+  --dolle-offwhite:#F8F4EC;
+  --dolle-white:#FFFFFF;
+  --dolle-kobalt:#0047FF;
+  --dolle-kobalt-light:#4D7DFF;
+
+  /* Working tints. Navy/offwhite mixes only — never new hues. */
+  --navy-92:#22304a;
+  --navy-84:#33405a;
+  --navy-64:rgba(16,31,60,.64);
+  --navy-48:rgba(16,31,60,.48);
+  --navy-24:rgba(16,31,60,.24);
+  --navy-12:rgba(16,31,60,.12);
+  --navy-06:rgba(16,31,60,.06);
+  --white-72:rgba(255,255,255,.72);
+  --white-48:rgba(255,255,255,.48);
+  --white-16:rgba(255,255,255,.16);
+  --white-08:rgba(255,255,255,.08);
+  --offwhite-sunk:#F1EBE0;
+
+  /* Semantic — light surface (default): wit is de paginabasis. */
+  --surface-page:var(--dolle-white);
+  --surface-page-calm:var(--dolle-offwhite);
+  --surface-card:var(--dolle-white);
+  --surface-sunk:var(--offwhite-sunk);
+  --surface-inverse:var(--dolle-navy);
+  --text-heading:var(--dolle-navy);
+  --text-body:var(--navy-84);
+  --text-muted:var(--navy-64);
+  --text-label:var(--navy-64);
+  --text-accent:var(--dolle-kobalt);
+  --border-hairline:var(--navy-12);
+  --border-strong:var(--dolle-navy);
+  --mark-color:var(--dolle-navy);
+
+  /* Activation — the growth colour. One instance per screen, never a fill. */
+  --accent:var(--dolle-kobalt);
+  --accent-on-dark:var(--dolle-kobalt-light);
+  /* Kobalt op een omgekeerd vlak (navy knop op licht, gebroken-wit knop op navy). */
+  --accent-on-inverse:var(--dolle-kobalt-light);
+  /* Hover op een omgekeerd vlak: navy verdiept, gebroken wit gaat naar zuiver wit. */
+  --surface-inverse-hover:var(--navy-84);
+  --link:var(--dolle-kobalt);
+  --link-hover:var(--dolle-navy);
+  --focus-ring:var(--dolle-kobalt);
+}
+
+/* Calm scope: class="dolle-calm" op een rustige, uitleggende pagina (tone of voice,
+   logo-set, typografie, diensten, tabellen, referentie). De pagina wordt gebroken wit
+   en de blokken erop worden hagelwit. */
+.dolle-calm{
+  --surface-page:var(--dolle-offwhite);
+  --surface-card:var(--dolle-white);
+  --surface-sunk:var(--offwhite-sunk);
+}
+
+/* Dark scope: put class="dolle-dark" (or data-theme="dark") on any navy surface. */
+.dolle-dark{
+  --surface-page:var(--dolle-navy);
+  --surface-card:var(--navy-92);
+  --surface-sunk:#0b1730;
+  --surface-inverse:var(--dolle-offwhite);
+  --text-heading:var(--dolle-white);
+  --text-body:var(--white-72);
+  --text-muted:var(--white-48);
+  --text-label:var(--white-48);
+  --text-accent:var(--dolle-kobalt-light);
+  --border-hairline:var(--white-16);
+  --border-strong:var(--dolle-white);
+  --mark-color:var(--dolle-white);
+  --accent:var(--dolle-kobalt-light);
+  --accent-on-inverse:var(--dolle-kobalt);
+  --surface-inverse-hover:var(--dolle-white);
+  --link:var(--dolle-kobalt-light);
+  --link-hover:var(--dolle-white);
+  --focus-ring:var(--dolle-kobalt-light);
+}

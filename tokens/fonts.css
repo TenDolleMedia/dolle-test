@@ -1,0 +1,5 @@
+/* DOLLE webfonts. Archivo (koppen, tekst, WILDLY) + Hanken Grotesk (labels & data).
+   Beide staan op Google Fonts en worden hier via de Google CSS-API geladen — dat is
+   de bron van waarheid. Alleen voor offline/print-export: .woff2 in assets/fonts/
+   zetten en deze import vervangen door lokale @font-face-regels. */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");

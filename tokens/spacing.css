@@ -1,0 +1,23 @@
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+  --space-11:192px;
+
+  /* Layout. Page margin is never smaller than 1/16 of the short side. */
+  --page-margin:clamp(24px,6.25vw,96px);
+  --page-margin-min:6.25%; /* @kind other */
+  --content-max:1320px;
+  --measure:64ch; /* @kind other */         /* reading width */
+  --measure-narrow:46ch; /* @kind other */
+  --section-gap:clamp(96px,11vw,200px);
+  --frame-inset:clamp(20px,3vw,48px); /* air between frame corners and content */
+  --grid-gap:clamp(24px,3vw,48px);
+}

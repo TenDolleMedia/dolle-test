@@ -1,0 +1,241 @@
+<!-- @dsCard group="Website" viewport="1440x900" name="dolle.nl" subtitle="Marketingsite (EN): intro-animatie, home, services, cases, careers, contact" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DOLLE · Making brands wildly visible</title>
+<meta name="description" content="DOLLE makes brands wildly visible: strategic media production, brand launches, AI systems and growth. Brand films, campaigns and social content for brands across the Netherlands.">
+<meta name="theme-color" content="#101F3C">
+<link rel="canonical" href="https://dolle.nl/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DOLLE">
+<meta property="og:title" content="DOLLE · Making brands wildly visible">
+<meta property="og:description" content="Strategic media production, brand launches, AI systems and growth. Brand films, campaigns and social content.">
+<meta property="og:url" content="https://dolle.nl/">
+<meta property="og:image" content="https://dolle.nl/assets/og-dolle.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"DOLLE","alternateName":"Ten Dolle Media","url":"https://dolle.nl/","logo":"https://dolle.nl/assets/dolle-beeldmerk-blok-navy.svg","email":"info@dolle.nl","telephone":"+31651202317","address":{"@type":"PostalAddress","streetAddress":"Lijnbaansgracht 206-2","postalCode":"1016 XA","addressLocality":"Amsterdam","addressCountry":"NL"},"description":"Media production, brand launches, AI systems and growth."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"Veteranen Search Team · brand film","description":"Brand film for Veteranen Search Team, the volunteer organisation that searches for missing people alongside the police.","thumbnailUrl":"https://dolle.nl/assets/cases/vst/vst-still-04-web.jpg","contentUrl":"https://dolle.nl/assets/video/vst-brandfilm.mp4","uploadDate":"2022-04-13","publisher":{"@type":"Organization","name":"DOLLE"}}</script>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="icon" href="../../assets/dolle-beeldmerk-blok-navy.svg">
+<script>window.DOLLE_ASSET_BASE="../../assets/"</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script>
+/* Video's laden in een rij: hoogstens twee tegelijk, de grootste in beeld (de hero) eerst.
+   Zo houden video's nooit de verbindingen bezet die de foto's nodig hebben.
+   Buiten beeld laadt niets; stille loops pauzeren als je eraan voorbij scrolt. */
+(function(){
+  var MAX=2,actief=0,rij=[];
+  function klaar(v){if(v.__dolleSlot){v.__dolleSlot=false;actief--;volgende();}}
+  function start(v){v.__dolleWacht=false;v.__dolleSlot=true;actief++;
+    var los=function(){klaar(v);};["loadeddata","error","stalled"].forEach(function(e){v.addEventListener(e,los,{once:true});});
+    setTimeout(los,5000);
+    v.preload=v.__dollePre||"metadata";if(v.__dolleAuto)v.autoplay=true;try{v.load();}catch(x){}
+    if(v.__dolleAuto&&v.muted){var p=v.play();if(p&&p.catch)p.catch(function(){});}}
+  function volgende(){
+    rij=rij.filter(function(v){return v.__dolleWacht&&v.isConnected;});
+    rij.sort(function(p,q){return (q.__dolleMaat||0)-(p.__dolleMaat||0);});
+    while(actief<MAX&&rij.length){start(rij.shift());}}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;
+    if(e.isIntersecting){
+      if(v.__dolleWacht){var r=e.boundingClientRect;v.__dolleMaat=r.width*r.height;if(rij.indexOf(v)<0)rij.push(v);}
+      else if(v.__dolleAuto&&v.muted&&v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+    }else{var i=rij.indexOf(v);if(i>=0)rij.splice(i,1);if(v.__dolleAuto&&v.muted&&!v.paused&&!v.controls)v.pause();}
+  });volgende();},{rootMargin:"300px 300px"});
+  function neem(v){
+    if(v.__dolleGezien)return;v.__dolleGezien=true;
+    v.__dolleAuto=v.autoplay||v.hasAttribute("autoplay");
+    v.__dollePre=v.getAttribute("preload")||"metadata";
+    v.__dolleWacht=true;v.autoplay=false;v.removeAttribute("autoplay");v.preload="none";
+    try{v.pause();}catch(x){}
+    /* Wil een component zelf afspelen voordat de video aan de beurt is: dan meteen laden. */
+    var eigen=v.play.bind(v);v.play=function(){if(v.__dolleWacht){var i=rij.indexOf(v);if(i>=0)rij.splice(i,1);v.__dolleWacht=false;v.preload=v.__dollePre;}return eigen();};
+    io.observe(v);}
+  function zoek(n){if(!n||n.nodeType!==1)return;if(n.tagName==="VIDEO")neem(n);else if(n.querySelectorAll){var l=n.querySelectorAll("video");for(var i=0;i<l.length;i++)neem(l[i]);}}
+  new MutationObserver(function(ms){ms.forEach(function(m){for(var i=0;i<m.addedNodes.length;i++)zoek(m.addedNodes[i]);});}).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+<script type="text/babel" src="Motion.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="SchakelFrame.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Chrome.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="HeroDissolve.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="DissolveLab.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="OvergangDissolve.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Home.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Pages.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Services.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Cases.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseMontel.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseEezy.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseKiela.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseBlueRivet.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CasePietKlerkx.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseVeteranenSearchTeam.babel.js?v=1007e"></script>
+<script type="text/babel" src="CaseMsoGroup.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseBergvliet.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseHangEleven.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseMedpets.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseMontelPagina.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script>window.WX_TWEAKS = /*EDITMODE-BEGIN*/{
+  "kop": "beeld",
+  "intro": "vast",
+  "winkel": "mood"
+}/*EDITMODE-END*/;</script>
+<script type="text/babel" src="tweaks-panel.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseMotion.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="CaseWoonexpress.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script id="dolle-cases-rang-migratie">(function(){try{var k="dolle-cases-rang",r=JSON.parse(localStorage.getItem(k));if(!Array.isArray(r))return;[24].forEach(function(id){var i=r.indexOf(id),j=r.indexOf(7);if(i>-1&&j>-1&&i>j){r.splice(i,1);r.splice(r.indexOf(7),0,id);}});var q=r.indexOf(17);if(q>-1&&r.indexOf(1)>-1){r.splice(q,1);r.splice(r.indexOf(1),0,17);}var m=r.indexOf(14);if(m>-1&&r.indexOf(5)>-1){r.splice(m,1);r.splice(r.indexOf(5)+1,0,14);}localStorage.setItem(k,JSON.stringify(r));}catch(e){}})();</script>
+<script type="text/babel" src="Career.babel.js?v=1009chebcsdpbhtruqxtfvzkwgpmncrkvwdpabhqetsflgedxykvrzmhkaisjmpctgkqwxyzabcdefghijkobefghstuvwxyzqrstuvwxkbrmlqwh"></script>
+<script type="text/babel" src="Contact.babel.js?v=1004v"></script>
+<!-- Zachte hoeken: overal net de puntjes eraf — knoppen, beeld, film en alles
+     met een rand (reviewkaart, kaders, tags). Eén blok, dus in één keer bij te stellen. -->
+<style id="dolle-zacht-test">
+button,a.dolle-knop{border-radius:4px !important}
+img,video,[style*="aspect-ratio"],[style*="1px solid"]{border-radius:5px}
+[style*="aspect-ratio"]{overflow:hidden}
+</style>
+<style id="dolle-mobiel">
+:where(a,button,[tabindex]):focus-visible{outline:2px solid var(--text-accent,#4D7DFF);outline-offset:3px}
+@media (max-width:980px){
+  [data-nav-breed]{display:none !important}
+  [data-nav-burger]{display:flex !important}
+}
+@media (max-width:760px){
+  [data-contact-kolom]{position:static !important}
+}
+@media (max-width:640px){
+  :root{--page-margin:20px}
+  [style*="padding: var(--space-10)"]{padding-top:var(--space-8) !important}
+  [style*="min-height: 100vh"]{min-height:auto !important}
+  table{display:block;overflow-x:auto}
+  img,video{max-width:100%}
+}
+@media (max-width:640px){
+  h1{font-size:clamp(26px,9vw,38px) !important;line-height:1.05 !important}
+  h2{font-size:clamp(20px,6.5vw,28px) !important}
+  [style*="grid-template-columns"]{grid-template-columns:minmax(0,1fr) !important}
+  [style*="aspect-ratio: 16 / 5"],[style*="aspect-ratio:16 / 5"]{aspect-ratio:16/9 !important}
+}
+@media (prefers-reduced-motion:reduce){
+  [data-rail="1"]{scroll-behavior:auto}
+}
+</style>
+<script id="dolle-video-spaarstand">/* Films buiten beeld pauzeren: scheelt bandbreedte en warmte op mobiel. */
+(function(){
+  if(!("IntersectionObserver" in window))return;
+  /* Alleen hervatten wat dit script zelf heeft stilgezet; wat een component
+     bewust stil houdt (hover-loops, dichte rijen) blijft stil. */
+  var kijk=new IntersectionObserver(function(rijen){
+    rijen.forEach(function(r){
+      var v=r.target;
+      if(v.dataset.handmatig==="1")return;
+      if(v.dataset.trimAan==="1"&&v.autoplay&&v.paused&&r.isIntersecting){v.play().catch(function(){});return;}
+      if(r.isIntersecting){
+        if(v.paused&&v.muted&&(v.dataset.spaar==="1"||v.autoplay))v.play().catch(function(){});
+        v.dataset.spaar="";
+      }else if(!v.paused){if(!v.muted||v.controls||v.dataset.film){return;}v.dataset.spaar="1";v.pause();}
+    });
+  },{rootMargin:"200px 400px",threshold:0});
+  var gezien=new WeakSet();
+  /* Films ver buiten beeld krijgen hun bron pas als ze in de buurt komen.
+     Anders houden tientallen video's alle verbindingen bezet en blijven foto's
+     (en andere films) hangen. */
+  var laad=new IntersectionObserver(function(rijen){
+    rijen.forEach(function(r){
+      if(!r.isIntersecting)return;
+      var v=r.target;laad.unobserve(v);
+      if(v.dataset.lui){v.setAttribute("src",v.dataset.lui);v.dataset.lui="";v.load();if(v.autoplay)v.play().catch(function(){});}
+    });
+  },{rootMargin:"600px 1200px",threshold:0});
+  function dichtbij(v){var b=v.getBoundingClientRect();return b.bottom>-600&&b.top<innerHeight+600;}
+  /* Films die ver uit beeld raken terwijl ze nog laden, geven hun verbinding
+     terug: bron eraf, en weer erop zodra ze in de buurt komen. */
+  var weg=new IntersectionObserver(function(rijen){
+    rijen.forEach(function(r){
+      var v=r.target;if(r.isIntersecting)return;
+      var s=v.getAttribute("src");
+      if(!s||!v.muted||v.controls||v.dataset.film||v.dataset.trimAan||v.dataset.handmatig==="1")return;
+      if(v.readyState>=3)return;
+      v.pause();v.dataset.lui=s;v.removeAttribute("src");v.load();laad.observe(v);
+    });
+  },{rootMargin:"700px 1400px",threshold:0});
+  function scan(){
+    document.querySelectorAll("video").forEach(function(v){
+      if(gezien.has(v))return;
+      gezien.add(v);
+      var s=v.getAttribute("src");
+      /* Getrimde films (eigen start/eind) houden hun bron: ze zoeken zelf hun startpunt. */
+      if(s&&!v.controls&&!v.dataset.film&&!v.dataset.trimAan&&!dichtbij(v)){v.dataset.lui=s;v.removeAttribute("src");v.load();laad.observe(v);}
+      if(!v.controls&&!v.dataset.film){kijk.observe(v);weg.observe(v);}
+      else v.addEventListener("play",function(){v.dataset.handmatig="1"});
+    });
+  }
+  scan();
+  new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
+<script id="dolle-film-terug">/* Een film die je zelf afspeelt stopt zodra hij helemaal uit beeld is en gaat terug naar zijn beginstand (poster met WATCH). */
+(function(){
+  if(!("IntersectionObserver" in window))return;
+  var kijk=new IntersectionObserver(function(rijen){
+    rijen.forEach(function(r){
+      var v=r.target;
+      if(r.isIntersecting||v.paused)return;
+      if(v.muted&&!v.controls&&!v.dataset.film)return;
+      v.pause();
+      try{v.currentTime=0;}catch(e){}
+      v.dispatchEvent(new Event("ended"));
+    });
+  },{threshold:0});
+  var gezien=new WeakSet();
+  function scan(){document.querySelectorAll("video").forEach(function(v){if(!gezien.has(v)){gezien.add(v);kijk.observe(v);}});}
+  scan();
+  new MutationObserver(scan).observe(document.documentElement,{childList:true,subtree:true});
+})();</script>
+<script id="dolle-geluidwacht">/* Geluid alleen na een klik: elke film die zonder recente klik met geluid start, wordt gedempt. */
+(function(){var klik=0;["pointerdown","keydown","touchstart"].forEach(function(t){document.addEventListener(t,function(){klik=Date.now();},true);});
+document.addEventListener("play",function(e){var v=e.target;if(!v||v.tagName!=="VIDEO"||v.muted)return;if(Date.now()-klik>1500){v.muted=true;}},true);
+document.addEventListener("volumechange",function(e){var v=e.target;if(!v||v.tagName!=="VIDEO"||v.muted||v.paused)return;if(Date.now()-klik>1500){v.muted=true;}},true);})();</script>
+</head><body>
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+function App(){
+  const [page,setPage]=React.useState("home");
+  /* De gekozen case in state, zodat een klik van case naar case wél herrendert. */
+  const [caseId,setCaseId]=React.useState(null);
+  /* Terug naar All cases: op dezelfde hoogte als waar je wegklikte, niet bovenaan. */
+  const casesY=React.useRef(0),terugY=React.useRef(null);
+  const go=(p,id)=>{if(page==="cases"&&p!=="cases")casesY.current=window.scrollY;terugY.current=(p==="cases"&&page!=="cases")?casesY.current:null;setPage(p);setCaseId(id!=null?id:(window.DOLLE_CASE!=null?window.DOLLE_CASE:null));window.scrollTo(0,0)};
+  React.useLayoutEffect(()=>{const y=terugY.current;if(page!=="cases"||!y)return;terugY.current=null;let n=0;const zet=()=>{window.scrollTo(0,y);if(Math.abs(window.scrollY-y)>2&&n++<40)requestAnimationFrame(zet)};zet();},[page]);
+  window.__dolleGo=go;
+  /* Eigen titel en omschrijving per pagina en per case. */
+  React.useEffect(()=>{
+    const T={home:["DOLLE · Making brands wildly visible","DOLLE makes brands wildly visible: strategic media production, brand launches, AI systems and growth."],diensten:["Services · DOLLE","Media production, launches, AI systems and growth: the four services DOLLE runs for brands."],cases:["Cases · DOLLE","Brand films, campaigns and social content DOLLE produced for brands across the Netherlands."],career:["Careers · DOLLE","Open roles at DOLLE, the Amsterdam media production studio."],contact:["Contact · DOLLE","Start a project with DOLLE. Lijnbaansgracht 206-2, Amsterdam."]};
+    let t=T[page]||T.home;
+    if(page==="case"){const c=(window.CASES||[]).find(x=>x.id===caseId);if(c)t=[c.klant+" · Case · DOLLE",(c.teaser||c.tekst||T.cases[1])];}
+    document.title=t[0];
+    const m=document.querySelector('meta[name="description"]');if(m)m.setAttribute("content",t[1]);
+    const o=document.querySelector('meta[property="og:title"]');if(o)o.setAttribute("content",t[0]);
+  },[page,caseId]);
+  const dark=page==="home"||page==="case"||page==="cases";
+  const [intro,setIntro]=React.useState(()=>{try{return !window.sessionStorage.getItem("dolle-intro")}catch(e){return true}});
+  const done=()=>{setIntro(false);try{window.sessionStorage.setItem("dolle-intro","1")}catch(e){}};
+  return <React.Fragment>
+    {intro?<Intro onDone={done}/>:null}
+    <Nav page={page==="case"?"cases":page} go={go} tone={dark?"dark":"light"}/>
+    {page==="home"?<Home go={go}/>:null}
+    {page==="diensten"?<Diensten go={go}/>:null}
+    {page==="cases"?<Cases go={go}/>:null}
+    {page==="career"?<Career go={go}/>:null}
+    {page==="case"?(caseId===1?<CaseEezy go={go}/>:caseId===18?<div className="dolle-zacht"><CaseKiela go={go}/></div>:caseId===5?<CaseBlueRivet go={go}/>:caseId===16?<CasePietKlerkx go={go}/>:caseId===17?<CaseBergvliet go={go}/>:caseId===24?<window.CaseVeteranenSearchTeam go={go}/>:caseId===14?<window.CaseMsoGroup go={go}/>:caseId===7?<window.CaseHangEleven go={go}/>:caseId===21&&window.CaseMedpets?<window.CaseMedpets go={go}/>:caseId===25&&window.CaseWoonexpress?<window.CaseWoonexpress go={go}/>:window.CaseMontelPagina?<window.CaseMontelPagina go={go}/>:<CaseMontel go={go}/>):null}
+    {page==="contact"?<Contact go={go}/>:null}
+    <Footer go={go}/>
+  </React.Fragment>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body></html>

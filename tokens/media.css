@@ -1,0 +1,106 @@
+/* MEDIA LADDERS — vaste schaal per medium, afgeleid van de website.
+   De website is leidend: de fluid tokens in typography.css zijn de bron.
+   Op een vast canvas (slide, A4, social) kan clamp(...vw...) niet werken,
+   dus staat hier per medium één uitgerekende ladder met dezelfde
+   verhoudingen. Nooit een eigen maat verzinnen naast deze ladders.
+
+   Verhoudingsregel: koppen houden exact de website-verhouding
+   (display : h1 : h2 : h3 = 64 : 44 : 31 : 20, ofwel 1 : .69 : .48 : .31),
+   WILDLY blijft .53 × display, lopende tekst gaat één sport omhoog
+   omdat een slide en een post op afstand of klein worden gelezen.
+   Print comprimeert de kopschaal iets (h1 = 2.2× body i.p.v. 2.6×),
+   omdat een A4-kolom smaller is dan een webkolom. */
+
+:root{
+  /* ---- SLIDE — 1280×720. Zet --slide-scale:1.5 op de sectie voor 1920×1080. ---- */
+  --slide-scale:1; /* @kind other */
+  --slide-display:calc(56px * var(--slide-scale));
+  --slide-h1:calc(40px * var(--slide-scale));
+  --slide-h2:calc(28px * var(--slide-scale));
+  --slide-h3:calc(22px * var(--slide-scale));
+  --slide-wildly:calc(30px * var(--slide-scale));
+  --slide-body-lg:calc(20px * var(--slide-scale));
+  --slide-body:calc(18px * var(--slide-scale));
+  --slide-body-sm:calc(16px * var(--slide-scale));
+  --slide-label:calc(12px * var(--slide-scale));
+  --slide-label-sm:calc(10.5px * var(--slide-scale));
+  --slide-margin:calc(64px * var(--slide-scale));      /* 1/16 korte zijde bij 720 = 45; 64 geeft de framelucht */
+  --slide-edge-bottom:calc(44px * var(--slide-scale)); /* PageEdge-lijn */
+  --slide-col-gap:calc(72px * var(--slide-scale));
+  --slide-stack:calc(26px * var(--slide-scale));       /* kicker → kop → tekst */
+  --slide-logo:calc(30px * var(--slide-scale));        /* zelfde hoogte als de nav op de site */
+  --slide-measure:44ch; /* @kind other */
+
+  /* ---- PRINT — A4 staand, offerte en rapport. Alles in pt. ---- */
+  --doc-page-width:210mm; /* @kind spacing */
+  --doc-page-height:297mm; /* @kind spacing */
+  --doc-margin:18mm; /* @kind spacing */                 /* > 1/16 van 210mm = 13.1mm */
+  --doc-display:32pt; /* @kind font */
+  --doc-h1:24pt; /* @kind font */
+  --doc-h2:16.5pt; /* @kind font */
+  --doc-h3:13pt; /* @kind font */
+  --doc-wildly:18pt; /* @kind font */
+  --doc-body-lg:12pt; /* @kind font */
+  --doc-body:11pt; /* @kind font */
+  --doc-body-sm:9pt; /* @kind font */
+  --doc-label:7pt; /* @kind font */
+  --doc-label-sm:6.5pt; /* @kind font */
+  --doc-lh-body:1.55; /* @kind other */  /* iets strakker dan web 1.68: print leest korter */
+  --doc-stack:6mm; /* @kind other */
+  --doc-section-gap:14mm; /* @kind other */
+  --doc-logo:9mm; /* @kind spacing */
+  --doc-measure:74ch; /* @kind other */
+
+  /* ---- SOCIAL — 1080 breed (1:1, 4:5, 9:16). Zet --social-scale op andere breedtes. ---- */
+  --social-scale:1; /* @kind other */
+  --social-display:calc(76px * var(--social-scale));
+  --social-h1:calc(54px * var(--social-scale));
+  --social-h2:calc(38px * var(--social-scale));
+  --social-h3:calc(30px * var(--social-scale));
+  --social-wildly:calc(40px * var(--social-scale));
+  --social-body-lg:calc(26px * var(--social-scale));
+  --social-body:calc(23px * var(--social-scale));
+  --social-label:calc(16px * var(--social-scale));
+  --social-label-sm:calc(14px * var(--social-scale));
+  --social-margin:calc(72px * var(--social-scale));    /* 1/16 van 1080 = 67.5 */
+  --social-stack:calc(24px * var(--social-scale));
+  --social-logo:calc(34px * var(--social-scale));
+  --social-measure:26ch; /* @kind other */
+}
+
+/* ---- MEDIUM-SCOPES ----
+   Zet één van deze classes op de root van een vast canvas (een slide-sectie,
+   een documentpagina, een post). De web-tokens worden dan geremapt naar de
+   ladder van dat medium, zodat ELKE component (Kicker, PageEdge, Button,
+   StatFrame, Card, ServiceList) automatisch de juiste maat aanneemt.
+   Zonder scope blijft een component op de fluid webschaal staan — dat is
+   precies waar slides en documenten eerder de mist in gingen. */
+
+.dolle-slide{
+  --size-display:var(--slide-display);--size-h1:var(--slide-h1);--size-h2:var(--slide-h2);
+  --size-h3:var(--slide-h3);--size-h4:var(--slide-body-lg);--size-wildly:var(--slide-wildly);
+  --size-body-lg:var(--slide-body-lg);--size-body:var(--slide-body);--size-body-sm:var(--slide-body-sm);
+  --size-label:var(--slide-label);--size-label-sm:var(--slide-label-sm);
+  --page-margin:var(--slide-margin);--measure:var(--slide-measure);--measure-narrow:24ch;
+  --section-gap:calc(64px * var(--slide-scale));--grid-gap:var(--slide-col-gap);
+  font-size:var(--slide-body);
+}
+.dolle-doc{
+  --size-display:var(--doc-display);--size-h1:var(--doc-h1);--size-h2:var(--doc-h2);
+  --size-h3:var(--doc-h3);--size-h4:var(--doc-body-lg);--size-wildly:var(--doc-wildly);
+  --size-body-lg:var(--doc-body-lg);--size-body:var(--doc-body);--size-body-sm:var(--doc-body-sm);
+  --size-label:var(--doc-label);--size-label-sm:var(--doc-label-sm);
+  --lh-body:var(--doc-lh-body);
+  --page-margin:var(--doc-margin);--measure:var(--doc-measure);--measure-narrow:52ch;
+  --section-gap:var(--doc-section-gap);--grid-gap:8mm;
+  font-size:var(--doc-body);line-height:var(--doc-lh-body);
+}
+.dolle-social{
+  --size-display:var(--social-display);--size-h1:var(--social-h1);--size-h2:var(--social-h2);
+  --size-h3:var(--social-h3);--size-h4:var(--social-body-lg);--size-wildly:var(--social-wildly);
+  --size-body-lg:var(--social-body-lg);--size-body:var(--social-body);--size-body-sm:var(--social-body);
+  --size-label:var(--social-label);--size-label-sm:var(--social-label-sm);
+  --page-margin:var(--social-margin);--measure:var(--social-measure);--measure-narrow:18ch;
+  --grid-gap:calc(32px * var(--social-scale));
+  font-size:var(--social-body);
+}

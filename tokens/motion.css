@@ -1,0 +1,22 @@
+:root{
+  /* One movement, short, no bounce. Fast out, soft in. */
+  --ease-dolle:cubic-bezier(.16,.84,.24,1); /* @kind other */
+  --ease-out:cubic-bezier(.22,1,.36,1); /* @kind other */
+  --ease-in:cubic-bezier(.6,0,1,1); /* @kind other */
+  --dur-tap:120ms; /* @kind other */
+  --dur-ui:180ms; /* @kind other */
+  --dur-frame:560ms; /* @kind other */   /* frame open/close: 0.4–0.8s */
+  --dur-frame-min:400ms; /* @kind other */
+  --dur-frame-max:800ms; /* @kind other */
+  --dur-schakel:220ms; /* @kind other */ /* the closing tick */
+  --stagger:60ms; /* @kind other */
+}
+/* Woordwissel: het aankomende woord zakt van boven op zijn plek. Het vertrekkende
+   woord schuift in dezelfde tel onder uit — één rij reizen, altijd. */
+@keyframes dolle-woord-in{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+/* Merkband: één reeks schuift precies haar eigen lengte, de kopie erachter
+   neemt het over — dus een doorlopende band zonder sprong. */
+@keyframes dolle-band{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+@media (prefers-reduced-motion:reduce){
+  :root{--dur-tap:0ms; /* @kind other */ --dur-ui:0ms; /* @kind other */ --dur-frame:0ms; /* @kind other */ --dur-schakel:0ms; /* @kind other */ --stagger:0ms /* @kind other */}
+}
